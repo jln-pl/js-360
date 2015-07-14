@@ -102,7 +102,7 @@
 
     function hideImages() {
         for (var i = 1, max = images.length; i < max; i++) {
-            images[i].className = "nonDraggableImage hidden";
+            images[i].className = "hidden";
         }
     }
 
@@ -127,11 +127,11 @@
     var current = 0;
 
     mouseDrag.subscribe(function(i) {
-        images[current].className = 'nonDraggableImage hidden';
+        images[current].className = 'hidden';
         
         incrementCurrentImage(i);
 
-        images[current].className = 'nonDraggableImage';
+        images[current].className = '';
     });
     </script>
 </body>
