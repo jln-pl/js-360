@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/jln-pl/js-360/issues"
   },
-  "homepage": "https://github.com/jln-pl/js-360#readme"
+  "homepage": "https://github.com/jln-pl/js-360#readme",
+  "dependencies": {
+    "rx": "^2.5.3"
+  }
 }
