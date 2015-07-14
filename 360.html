@@ -80,15 +80,12 @@
 
     <script type="text/javascript">
 
-    function getX(event) {
-        return event.x;
+    function getMovementX(event) {
+        return event.movementX;
     }
 
     function getMouseMove(x) {
-        return mouseMove
-                .map(function(cur_x){
-                    return cur_x - x;
-                });
+        return mouseMove;
     }
 
     function every10steps(x) {
@@ -119,11 +116,10 @@
     var mouseDown = Rx.Observable.fromEvent(body, 'mousedown');
     var mouseUp   = Rx.Observable.fromEvent(body, 'mouseup');
     var mouseMove = Rx.Observable.fromEvent(body, 'mousemove')
-                        .map(getX)
+                        .map(getMovementX)
                         .takeUntil(mouseUp);
 
     var mouseDrag = mouseDown
-                        .map(getX)
                         .flatMap(getMouseMove)
                         .filter(every10steps)
                         .map(function(x){
