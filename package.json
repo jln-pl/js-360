@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/jln-pl/js-360#readme",
   "dependencies": {
+    "grunt-cli": "^0.1.13",
     "rx": "^2.5.3"
   }
 }
