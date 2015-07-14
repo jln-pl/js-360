@@ -1,0 +1,21 @@
+{
+  "name": "js-360",
+  "version": "0.1.0",
+  "description": "360 view with js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jln-pl/js-360.git"
+  },
+  "keywords": [
+    "360"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jln-pl/js-360/issues"
+  },
+  "homepage": "https://github.com/jln-pl/js-360#readme"
+}
