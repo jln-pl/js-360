@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>demo</title>
+    <style type="text/css">
+        .rotate-test {
+
+        }
+
+        .rotate-test img {
+            position: absolute;
+        }
+        .nonDraggableImage{
+            -webkit-user-drag: none;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+
+</head>
+<body class="refresh">
+
+    <div class="rotate-test" id="all">
+        <img src="1.png" class="nonDraggableImage">
+        <img src="2.png" class="nonDraggableImage">
+        <img src="3.png" class="nonDraggableImage">
+        <img src="4.png" class="nonDraggableImage">
+        <img src="5.png" class="nonDraggableImage">
+        <img src="6.png" class="nonDraggableImage">
+        <img src="7.png" class="nonDraggableImage">
+        <img src="8.png" class="nonDraggableImage">
+        <img src="9.png" class="nonDraggableImage">
+        <img src="10.png" class="nonDraggableImage">
+        <img src="11.png" class="nonDraggableImage">
+        <img src="12.png" class="nonDraggableImage">
+        <img src="13.png" class="nonDraggableImage">
+        <img src="14.png" class="nonDraggableImage">
+        <img src="15.png" class="nonDraggableImage">
+        <img src="16.png" class="nonDraggableImage">
+        <img src="17.png" class="nonDraggableImage">
+        <img src="18.png" class="nonDraggableImage">
+        <img src="19.png" class="nonDraggableImage">
+        <img src="20.png" class="nonDraggableImage">
+        <img src="21.png" class="nonDraggableImage">
+        <img src="22.png" class="nonDraggableImage">
+        <img src="23.png" class="nonDraggableImage">
+        <img src="24.png" class="nonDraggableImage">
+        <img src="25.png" class="nonDraggableImage">
+        <img src="26.png" class="nonDraggableImage">
+        <img src="27.png" class="nonDraggableImage">
+        <img src="28.png" class="nonDraggableImage">
+        <img src="29.png" class="nonDraggableImage">
+        <img src="30.png" class="nonDraggableImage">
+        <img src="31.png" class="nonDraggableImage">
+        <img src="32.png" class="nonDraggableImage">
+        <img src="33.png" class="nonDraggableImage">
+        <img src="34.png" class="nonDraggableImage">
+        <img src="35.png" class="nonDraggableImage">
+        <img src="36.png" class="nonDraggableImage">
+        <img src="37.png" class="nonDraggableImage">
+        <img src="38.png" class="nonDraggableImage">
+        <img src="39.png" class="nonDraggableImage">
+        <img src="40.png" class="nonDraggableImage">
+        <img src="41.png" class="nonDraggableImage">
+        <img src="42.png" class="nonDraggableImage">
+        <img src="43.png" class="nonDraggableImage">
+        <img src="44.png" class="nonDraggableImage">
+        <img src="45.png" class="nonDraggableImage">
+        <img src="46.png" class="nonDraggableImage">
+        <img src="47.png" class="nonDraggableImage">
+        <img src="48.png" class="nonDraggableImage">
+        <img src="49.png" class="nonDraggableImage">
+        <img src="50.png" class="nonDraggableImage">
+        <img src="51.png" class="nonDraggableImage">
+        <img src="52.png" class="nonDraggableImage">
+    </div>
+    <script src="rx.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+    function getX(event) {
+        return event.x;
+    }
+
+    function getMouseMove() {
+        return mouseMove;
+    }
+
+    function every10steps(x) {
+        return x % 3 == 0;
+    }
+
+    function incrementCurrentImage() {
+        current++;
+
+        if (current == images.length) {
+            current = 1;
+        }
+    }
+
+    function hideImages() {
+        for (var i = 1, max = images.length; i < max; i++) {
+            images[i].className = "nonDraggableImage hidden";
+        }
+    }
+
+    var images = document.getElementsByTagName('img');
+
+    hideImages();
+
+    var body = document.getElementById('all');
+    var mouseDown = Rx.Observable.fromEvent(body, 'mousedown');
+    var mouseUp   = Rx.Observable.fromEvent(body, 'mouseup');
+    var mouseMove = Rx.Observable.fromEvent(body, 'mousemove')
+                        .map(getX)
+                        .takeUntil(mouseUp);
+
+    var mouseDrag = mouseDown
+                        .flatMap(getMouseMove)
+                        .filter(every10steps);
+
+    var current = 0;
+
+    mouseDrag.subscribe(function(e) {
+        images[current].className = 'nonDraggableImage hidden';
+        incrementCurrentImage();
+        images[current].className = 'nonDraggableImage';
+    });
+    </script>
+</body>
+</html>
