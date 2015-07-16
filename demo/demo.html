@@ -1,26 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset=UTF-8>
-    <title>demo</title>
-    <style type="text/css">
-        .rotate-test {
-
-        }
-
-        .rotate-test img {
-            position: absolute;
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
-
+    <title>Demo</title>
 </head>
-<body class="refresh">
-
-    <div class="rotate-test" id="all">
+<body>
+<div class="rotate-test" id="all">
         <img src="http://www.360slider.com/img/car/1.png">
         <img src="http://www.360slider.com/img/car/2.png">
         <img src="http://www.360slider.com/img/car/3.png">
@@ -74,65 +58,9 @@
         <img src="http://www.360slider.com/img/car/51.png">
         <img src="http://www.360slider.com/img/car/52.png">
     </div>
-    <script src="rx.js" type="text/javascript"></script>
-
+    <script type="text/javascript" src="../dist/module.min.js"></script>
     <script type="text/javascript">
-    function getMovementX(event) {
-        return event.movementX || event.mozMovementX;
-    }
-
-    function getMouseMove(ev) {
-        ev.preventDefault();
-        return mouseMove;
-    }
-
-    function every10steps(x) {
-        return x % 2 == 0;
-    }
-
-    function incrementCurrentImage(i) {
-        current += i;
-
-        if (current === images.length) {
-            current = 0;
-        } else if (current < 0) {
-            current = images.length - 1;
-        }
-    }
-
-    function hideImages() {
-        for (var i = 1, max = images.length; i < max; i++) {
-            images[i].className = "hidden";
-        }
-    }
-
-    var images = document.getElementsByTagName('img');
-
-    hideImages();
-
-    var body = document.getElementById('all');
-    var mouseDown = Rx.Observable.fromEvent(body, 'mousedown');
-    var mouseUp   = Rx.Observable.fromEvent(body, 'mouseup');
-    var mouseMove = Rx.Observable.fromEvent(body, 'mousemove')
-                        .map(getMovementX)
-                        .takeUntil(mouseUp);
-
-    var mouseDrag = mouseDown
-                        .flatMap(getMouseMove)
-                        .filter(every10steps)
-                        .map(function(x){
-                            return x >= 0 ? 1 : -1;
-                        });
-
-    var current = 0;
-
-    mouseDrag.subscribe(function(i) {
-        images[current].className = 'hidden';
-        
-        incrementCurrentImage(i);
-
-        images[current].className = '';
-    });
+        window.JS360.generate360view('all');
     </script>
 </body>
 </html>
