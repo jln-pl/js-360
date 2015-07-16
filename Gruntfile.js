@@ -2,8 +2,14 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         jshint: {
+            options: {
+                jshintrc: '.jshintrc'
+            },
             files: [
-                'Gruntfile.js'
+                'Gruntfile.js',
+                'karma.conf.js',
+                'src/**/*.js',
+                'spec/**/*.js'
             ]
         },
         babel: {
@@ -32,10 +38,13 @@ module.exports = function (grunt) {
             tmp: ['tmp']
         },
         uglify: {
+            options: {
+                beautify: false
+            },
             target: {
-              files: {
-                'dist/module.min.js': ['node_modules/rx/dist/rx.lite.min.js', 'tmp/module.js']
-              }
+                files: {
+                    'dist/module.min.js': ['node_modules/rx/dist/rx.lite.min.js', 'tmp/module.js']
+                }
             }
         },
         karma: {
