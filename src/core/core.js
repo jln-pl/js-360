@@ -1,9 +1,8 @@
 import * as MouseHandler from '../handlers/mouseHandler.js';
 import * as TouchHandler from '../handlers/touchHandler.js';
 
-var container,
-    current = 0,
-    images = document.getElementsByTagName('img');
+let current = 0;
+const images = document.getElementsByTagName('img');
 
 function incrementCurrentImage(i) {
     current += i;
@@ -31,9 +30,9 @@ function toggleImages(i) {
 }
 
 export function generate360view(containerId) {
-    var mouseHandler, touchHandler;
+    let mouseHandler, touchHandler;
+    const container = document.getElementById(containerId);
 
-    container = document.getElementById(containerId);
     hideImages();
 
     mouseHandler = MouseHandler.getHandler(container);

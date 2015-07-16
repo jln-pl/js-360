@@ -1,4 +1,4 @@
-var mouseUp, mouseDown, mouseMove;
+let mouseUp, mouseDown, mouseMove;
 
 function getMovementX(event) {
     return event.movementX || event.mozMovementX;

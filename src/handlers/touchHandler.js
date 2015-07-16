@@ -1,4 +1,4 @@
-var startingPosition, touchStart, touchEnd, touchMove;
+let startingPosition, touchStart, touchEnd, touchMove;
 
 function setStartingPosition(event) {
     startingPosition = event.touches[0].pageX;
@@ -9,7 +9,7 @@ function clearPreviousPosition() {
 }
 
 function calculatePositions(event) {
-    var actual;
+    let actual;
 
     if (startingPosition) {
         actual = (event.touches[0].pageX - startingPosition) * 100;
@@ -19,7 +19,7 @@ function calculatePositions(event) {
 
     return {
         pageX: event.touches[0].pageX,
-        actual: actual
+        actual
     };
 }
 
