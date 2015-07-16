@@ -43,7 +43,7 @@ module.exports = function (grunt) {
             },
             target: {
                 files: {
-                    'dist/module.min.js': ['node_modules/rx/dist/rx.lite.min.js', 'tmp/module.js']
+                    'dist/js360.min.js': ['node_modules/rx/dist/rx.lite.min.js', 'tmp/module.js']
                 }
             }
         },
