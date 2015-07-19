@@ -15,19 +15,19 @@ module.exports = function(config) {
             'spec/**/*.js': ['browserify']
         },
 
-        // coverageReporter: {
-        //     reporters:[
-        //         {type: 'lcov', dir:'coverage/', subdir: 'lcov-info'},
-        //         {type: 'text-summary'},
-        //         {type: 'text'},
-        //         {type: 'cobertura'}
-        //     ]
-        // },
+         coverageReporter: {
+             reporters:[
+                 {type: 'lcov', dir:'coverage/', subdir: 'lcov-info'},
+                 {type: 'text-summary'},
+                 {type: 'text'}
+             ]
+         },
 
         browserify: {
             debug: true,
             transform: [
-                ['babelify']
+                'babelify',
+                'istanbulify'
             ]
         },
 
@@ -36,15 +36,16 @@ module.exports = function(config) {
             'karma-jasmine',
             'karma-phantomjs-launcher',
             'karma-browserify',
+            'karma-coverage'
         ],
 
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
 
         port: 9876,
 
         colors: true,
 
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DISABLE,
 
         autoWatch: true,
 
