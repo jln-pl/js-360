@@ -1,4 +1,4 @@
-let startingPosition, start, end, move;
+let startingPosition;
 const tolerance = 7;
 
 function getEventPageX(event) {
@@ -11,6 +11,10 @@ function setStartingPosition(event) {
 
 function clearPreviousPosition() {
     startingPosition = undefined;
+}
+
+function getActualPosition(o) {
+    return o.actual;
 }
 
 function preventDefault(event) {
@@ -39,14 +43,6 @@ function probe(o) {
     return true;
 }
 
-function setStartingPosition(o) {
-    startingPosition = o.pageX;
-}
-
-function getActualPosition(o) {
-    return o.actual;
-}
-
 function counterMapper(x) {
     if (x > 0) {
         return 1;
@@ -58,21 +54,21 @@ function counterMapper(x) {
 }
 
 export function getHandler(container) {
-    start = Rx.Observable.merge(
+    const start = Rx.Observable.merge(
         Rx.Observable.fromEvent(container, 'mousedown'),
         Rx.Observable.fromEvent(container, 'touchstart')
     )
         .do(preventDefault)
         .do(setStartingPosition);
 
-    end = Rx.Observable.merge(
+    const end = Rx.Observable.merge(
         Rx.Observable.fromEvent(container, 'mouseup'),
         Rx.Observable.fromEvent(container, 'touchend')
     )
         .do(preventDefault)
         .do(clearPreviousPosition);
 
-    move = Rx.Observable.merge(
+    const move = Rx.Observable.merge(
         Rx.Observable.fromEvent(container, 'mousemove'),
         Rx.Observable.fromEvent(container, 'touchmove')
     )
