@@ -19,10 +19,10 @@ You can find usage example in "demo" folder.
 * Add library to your html file:
 
 ```html
-<script type="text/javascript" src="js360.min.js"></script>
+<script src="js360.min.js"></script>
 ```
 
-* then create container with html tags and give its an id:
+* create container with images inside
 
 ```html
 <div id="container-id">
@@ -35,8 +35,6 @@ You can find usage example in "demo" folder.
 
 * use library
 
-```html
-<script type="text/javascript">
-    window.JS360.generate360view('container-id');
-</script>
+```js
+JS360.generate360view('container-id');
 ```
