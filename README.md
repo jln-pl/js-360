@@ -6,6 +6,12 @@ This library adds `JS360.generate360view(...)` function as `window` property. No
 
 Works with a mouse or touch devices. 
 
+## Installation
+
+```sh
+npm install js-360
+```
+
 ## Usage
 
 You can find usage example in "demo" folder.
