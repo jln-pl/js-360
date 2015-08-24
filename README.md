@@ -1,6 +1,6 @@
 # js-360
 
-> It is a 360° viewer for products. Made with RXjs and EcmaScript 6.
+> It is a 360° viewer for products. Made with [RxJS](https://github.com/Reactive-Extensions/RxJS) and EcmaScript 6.
 
 This library adds `JS360.generate360view(...)` function as `window` property. Now you can rotate your product!
 
