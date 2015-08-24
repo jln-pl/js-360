@@ -38,3 +38,7 @@ You can find usage example in "demo" folder.
 ```js
 JS360.generate360view('container-id');
 ```
+
+## License
+
+MIT
