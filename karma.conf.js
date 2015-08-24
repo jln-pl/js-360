@@ -1,4 +1,4 @@
-module.exports = function(config) {
+module.exports = function (config) {
     config.set({
         basePath: '',
 
@@ -15,13 +15,13 @@ module.exports = function(config) {
             'spec/**/*.js': ['browserify']
         },
 
-         coverageReporter: {
-             reporters:[
-                 {type: 'lcov', dir:'coverage/', subdir: 'lcov-info'},
-                 {type: 'text-summary'},
-                 {type: 'text'}
-             ]
-         },
+        coverageReporter: {
+            reporters: [
+                {type: 'lcov', dir: 'coverage/', subdir: 'lcov-info'},
+                {type: 'text-summary'},
+                {type: 'text'}
+            ]
+        },
 
         browserify: {
             debug: true,
@@ -32,7 +32,7 @@ module.exports = function(config) {
         },
 
 
-        plugins : [
+        plugins: [
             'karma-jasmine',
             'karma-phantomjs-launcher',
             'karma-browserify',
