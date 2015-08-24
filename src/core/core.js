@@ -1,5 +1,4 @@
-import * as MouseHandler from '../handlers/mouseHandler.js';
-import * as TouchHandler from '../handlers/touchHandler.js';
+import * as Handler from '../handlers/handler.js';
 
 let current = 0;
 const images = document.getElementsByTagName('img');
@@ -18,8 +17,6 @@ function hideImages() {
         if (i !== 0) {
             images[i].style.display = 'none';
         }
-
-        images[i].style.position = 'absolute';
     }
 }
 
@@ -30,14 +27,10 @@ function toggleImages(i) {
 }
 
 export function generate360view(containerId) {
-    let mouseHandler, touchHandler;
     const container = document.getElementById(containerId);
+    const handler = Handler.getHandler(container);
 
     hideImages();
 
-    mouseHandler = MouseHandler.getHandler(container);
-    touchHandler = TouchHandler.getHandler(container);
-
-    mouseHandler.subscribe(toggleImages);
-    touchHandler.subscribe(toggleImages);
+    handler.subscribe(toggleImages);
 }
