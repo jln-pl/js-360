@@ -1,7 +1,6 @@
 import * as Handler from '../handlers/handler.js';
 
-let current = 0;
-const images = document.getElementsByTagName('img');
+let current = 0, images;
 
 function incrementCurrentImage(i) {
     current += i;
@@ -13,10 +12,8 @@ function incrementCurrentImage(i) {
 }
 
 function hideImages() {
-    for (var i = 0, max = images.length; i < max; i++) {
-        if (i !== 0) {
-            images[i].style.display = 'none';
-        }
+    for (var i = 1, max = images.length; i < max; i++) {
+        images[i].style.display = 'none';
     }
 }
 
@@ -29,7 +26,7 @@ function toggleImages(i) {
 export function generate360view(containerId) {
     const container = document.getElementById(containerId);
     const handler = Handler.getHandler(container);
-
+    images = document.querySelector("#" + containerId + " img");
     hideImages();
 
     handler.subscribe(toggleImages);
