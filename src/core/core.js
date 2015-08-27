@@ -26,7 +26,7 @@ function toggleImages(i) {
 export function generate360view(containerId) {
     const container = document.getElementById(containerId);
     const handler = Handler.getHandler(container);
-    images = document.querySelector("#" + containerId + " img");
+    images = document.querySelectorAll("#" + containerId + " img");
     hideImages();
 
     handler.subscribe(toggleImages);
