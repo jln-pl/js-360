@@ -12,25 +12,14 @@ module.exports = function (grunt) {
                 'spec/**/*.js'
             ]
         },
-        babel: {
-            options: {
-                sourceMap: false,
-                blacklist: ["strict"]
-            },
-            dist: {
-                files: [{
-                    "expand": true,
-                    "cwd": "./src/",
-                    "src": ["**/*.js"],
-                    "dest": "tmp",
-                    "ext": ".js"
-                }]
-            }
-        },
         browserify: {
             dist: {
-                src: 'tmp/module.js',
-                dest: 'tmp/module.js'
+                options: {
+                    transform: [["babelify", { "stage": 0 }]]
+                },
+                files: {
+                    'tmp/module.js': 'src/module.js'
+                }
             }
         },
         clean: {
@@ -55,12 +44,11 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-babel');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('build', ['clean', 'jshint', 'karma', 'babel', 'browserify', 'uglify', 'clean:tmp']);
+    grunt.registerTask('build', ['clean', 'jshint', 'karma', 'browserify', 'uglify', 'clean:tmp']);
     grunt.registerTask('test', ['jshint', 'karma']);
 };
