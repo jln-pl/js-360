@@ -1,5 +1,7 @@
-let startingPosition;
+const Observable = require('rx').Observable;
 const tolerance = 7;
+
+let startingPosition;
 
 function getEventPageX(event) {
     return event.pageX || event.touches[0].pageX;
@@ -54,23 +56,23 @@ function counterMapper(x) {
 }
 
 export function getHandler(container) {
-    const start = Rx.Observable.merge(
-        Rx.Observable.fromEvent(container, 'mousedown'),
-        Rx.Observable.fromEvent(container, 'touchstart')
+    const start = Observable.merge(
+        Observable.fromEvent(container, 'mousedown'),
+        Observable.fromEvent(container, 'touchstart')
     )
         .do(preventDefault)
         .do(setStartingPosition);
 
-    const end = Rx.Observable.merge(
-        Rx.Observable.fromEvent(container, 'mouseup'),
-        Rx.Observable.fromEvent(container, 'touchend')
+    const end = Observable.merge(
+        Observable.fromEvent(container, 'mouseup'),
+        Observable.fromEvent(container, 'touchend')
     )
         .do(preventDefault)
         .do(clearPreviousPosition);
 
-    const move = Rx.Observable.merge(
-        Rx.Observable.fromEvent(container, 'mousemove'),
-        Rx.Observable.fromEvent(container, 'touchmove')
+    const move = Observable.merge(
+        Observable.fromEvent(container, 'mousemove'),
+        Observable.fromEvent(container, 'touchmove')
     )
         .do(preventDefault)
         .map(calculatePositions)
