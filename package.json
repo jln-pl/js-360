@@ -22,6 +22,7 @@
     "grunt-cli": "^0.1.13",
     "rx": "^2.5.3"
   },
+  "main": "dist/js360.min.js",
   "devDependencies": {
     "babelify": "^6.1.3",
     "grunt": "^0.4.5",
