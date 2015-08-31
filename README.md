@@ -38,6 +38,15 @@ You can find usage example in "demo" folder.
 ```js
 JS360.generate360view('container-id');
 ```
+### Browserify
+
+With [Browserify](http://browserify.org/) it's enough to do the following
+
+```js
+var js360 = require('js-360');
+
+js360.generate360view('container-id');
+```
 
 ## License
 
