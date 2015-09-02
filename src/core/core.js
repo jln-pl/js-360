@@ -1,4 +1,4 @@
-import * as Handler from '../handlers/handler.js';
+import getHandler from '../handlers/handler';
 
 let current = 0, images;
 
@@ -23,9 +23,9 @@ function toggleImages(i) {
     images[current].style.display = 'block';
 }
 
-export function generate360view(containerId) {
+export default function generate360view(containerId) {
     const container = document.getElementById(containerId);
-    const handler = Handler.getHandler(container);
+    const handler = getHandler(container);
     images = document.querySelectorAll("#" + containerId + " img");
     hideImages();
 

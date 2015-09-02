@@ -1,26 +1,15 @@
 module.exports = function (grunt) {
-
     grunt.initConfig({
         jshint: {
             options: {
                 jshintrc: '.jshintrc'
             },
             files: [
-                'Gruntfile.js',
-                'karma.conf.js',
-                'src/**/*.js',
-                'spec/**/*.js'
+            'Gruntfile.js',
+            'karma.conf.js',
+            'src/**/*.js',
+            'spec/**/*.js'
             ]
-        },
-        browserify: {
-            dist: {
-                options: {
-                    transform: [["babelify", { "stage": 0 }]]
-                },
-                files: {
-                    'tmp/module.js': 'src/module.js'
-                }
-            }
         },
         clean: {
             build: ['./dist'],
@@ -40,15 +29,38 @@ module.exports = function (grunt) {
             unit: {
                 configFile: 'karma.conf.js'
             }
+        },
+        webpack: {
+            build: {
+                entry: './src/module.js',
+                output: {
+                    library: 'js360',
+                    libraryTarget: 'umd',
+                    path: __dirname,
+                    filename: 'tmp/module.js',
+                },
+                externals: {
+                    'rx': 'rx'
+                },
+                resolve: {
+                    extensions: ['', '.js']
+                },
+                module: {
+                    loaders: [{
+                        test: /.js$/,
+                        loader: 'babel-loader'
+                    }]
+                }
+            }
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-karma');
+grunt.loadNpmTasks('grunt-contrib-jshint');
+grunt.loadNpmTasks('grunt-contrib-clean');
+grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-karma');
+grunt.loadNpmTasks('grunt-webpack');
 
-    grunt.registerTask('build', ['clean', 'jshint', 'karma', 'browserify', 'uglify', 'clean:tmp']);
-    grunt.registerTask('test', ['jshint', 'karma']);
+grunt.registerTask('build', ['clean', 'karma', 'jshint', 'webpack', 'uglify', 'clean:tmp']);
+grunt.registerTask('test', ['jshint', 'karma']);
 };

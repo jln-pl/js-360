@@ -1,4 +1,5 @@
-const Observable = require('rx').Observable;
+import Observable from 'rx';
+
 const tolerance = 7;
 
 let startingPosition;
@@ -55,7 +56,7 @@ function counterMapper(x) {
     return x;
 }
 
-export function getHandler(container) {
+export default function getHandler(container) {
     const start = Observable.merge(
         Observable.fromEvent(container, 'mousedown'),
         Observable.fromEvent(container, 'touchstart')
