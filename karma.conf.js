@@ -2,43 +2,35 @@ module.exports = function (config) {
     config.set({
         basePath: '',
 
-        frameworks: ['browserify', 'jasmine'],
+        frameworks: ['jasmine'],
 
         files: [
-            'node_modules/rx/dist/rx.lite.min.js',
-            'src/module.js',
-            'src/**/*.js',
             'spec/**/*Spec.js'
         ],
         preprocessors: {
-            'src/**/*.js': ['browserify'],
-            'spec/**/*.js': ['browserify']
-        },
-
-        coverageReporter: {
-            reporters: [
-                {type: 'lcov', dir: 'coverage/', subdir: 'lcov-info'},
-                {type: 'text-summary'},
-                {type: 'text'}
-            ]
-        },
-
-        browserify: {
-            debug: true,
-            transform: [
-                'babelify',
-                'istanbulify'
-            ]
+            'spec/**/*.js': ['webpack']
         },
 
         plugins: [
             'karma-jasmine',
             'karma-phantomjs-launcher',
-            'karma-browserify',
-            'karma-coverage'
+            'karma-webpack'
         ],
 
-        reporters: ['progress', 'coverage'],
+        webpack: {
+            module: {
+                loaders: [{
+                    test: /.js$/,
+                    loader: 'babel-loader'
+                }]
+            }
+        },
+
+        webpackMiddleware: {
+            noInfo: true
+        },
+
+        reporters: ['progress'],
 
         port: 9876,
 
