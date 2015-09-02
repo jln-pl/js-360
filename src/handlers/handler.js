@@ -1,4 +1,4 @@
-import Observable from 'rx';
+import {Observable} from 'rx';
 
 const tolerance = 7;
 

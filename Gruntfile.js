@@ -37,10 +37,10 @@ module.exports = function (grunt) {
                     library: 'js360',
                     libraryTarget: 'umd',
                     path: __dirname,
-                    filename: 'tmp/module.js',
+                    filename: 'dist/js360.min.js',
                 },
                 externals: {
-                    'rx': 'rx'
+                    'Rx': 'Rx'
                 },
                 resolve: {
                     extensions: ['', '.js']

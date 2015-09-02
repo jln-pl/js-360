@@ -18,6 +18,9 @@ module.exports = function (config) {
         ],
 
         webpack: {
+            externals: {
+                'Rx': 'Rx'
+            },
             module: {
                 loaders: [{
                     test: /.js$/,
