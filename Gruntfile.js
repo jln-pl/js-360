@@ -1,3 +1,5 @@
+ var webpack = require('webpack');
+
 module.exports = function (grunt) {
     grunt.initConfig({
         jshint: {
@@ -14,16 +16,6 @@ module.exports = function (grunt) {
         clean: {
             build: ['./dist'],
             tmp: ['tmp']
-        },
-        uglify: {
-            options: {
-                beautify: false
-            },
-            target: {
-                files: {
-                    'dist/js360.min.js': ['tmp/module.js']
-                }
-            }
         },
         karma: {
             unit: {
@@ -45,6 +37,13 @@ module.exports = function (grunt) {
                 resolve: {
                     extensions: ['', '.js']
                 },
+                plugins: [
+                    new webpack.optimize.UglifyJsPlugin({
+                        compress: {
+                             warnings: false
+                        }
+                    })
+                ],
                 module: {
                     loaders: [{
                         test: /.js$/,
@@ -57,10 +56,9 @@ module.exports = function (grunt) {
 
 grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-clean');
-grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-karma');
 grunt.loadNpmTasks('grunt-webpack-without-server');
 
-grunt.registerTask('build', ['clean', 'jshint', 'karma', 'webpack', 'uglify', 'clean:tmp']);
+grunt.registerTask('build', ['clean', 'jshint', 'karma', 'webpack', 'clean:tmp']);
 grunt.registerTask('test', ['jshint', 'karma']);
 };
